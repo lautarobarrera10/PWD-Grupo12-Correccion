@@ -93,12 +93,13 @@ class Venta
 	//*El método cada vez que incorpora una moto a la venta, debe actualizar la variable instancia precio final de la venta. Utilizar el método que calcula el precio de venta de la moto donde crea necesario
 	public function incorporarMoto($objMoto)
 	{
-		$ColObjMoto[] = $this->getColObjMoto();
+		$ColObjMoto = $this->getColObjMoto();
 		if ($objMoto->getActiva()) {
 			$ColObjMoto[] = $objMoto;
 			//*Actualizo la col ya que se agrego un nuevo obj moto
 			$this->setColObjMoto($ColObjMoto);
-			$this->setPrecioFinal($objMoto->darPrecioVenta());
+			$precioFinal = $objMoto->darPrecioVenta();
+			$this->setPrecioFinal($precioFinal);
 		}
 	}
 }//!Cierre clase

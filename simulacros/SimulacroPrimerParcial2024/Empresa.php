@@ -71,24 +71,24 @@ class Empresa
 	public function strColObjCliente()
 	{
 		$str = "";
-		foreach ($this->getColObjCliente() as $value) {
-			$str .= $value . "\n";
+		foreach ($this->getColObjCliente() as $objCliente) {
+			$str .= $objCliente . "\n";
 		}
 		return $str;
 	}
 	public function strColObjMoto()
 	{
 		$str = "";
-		foreach ($this->getColObjMoto() as $value) {
-			$str .= $value . "\n";
+		foreach ($this->getColObjMoto() as $objMoto) {
+			$str .= $objMoto . "\n";
 		}
 		return $str;
 	}
 	public function strColObjVenta()
 	{
 		$str = "";
-		foreach ($this->getColObjVenta() as $value) {
-			$str .= $value . "\n";
+		foreach ($this->getColObjVenta() as $objVenta) {
+			$str .= $objVenta . "\n";
 		}
 		return $str;
 	}
@@ -98,9 +98,9 @@ class Empresa
 	{
 		return "Denominacion: " . $this->getDenominacion() . "\n" .
 			"Direccion: " . $this->getDireccion() . "\n" .
-			"Coleccion de Objetos Cliente: " . $this->strColObjCliente() . "\n" .
-			"Coleccion de objetos Moto: " . $this->strColObjMoto() . "\n" .
-			"Coleccion Objetos Venta: " . $this->strColObjVenta() . "\n";
+			"Coleccion de Objetos Cliente: " . "\n" . $this->strColObjCliente() . "\n" .
+			"Coleccion de objetos Moto: " . "\n" . $this->strColObjMoto() . "\n" .
+			"Coleccion Objetos Venta: " . "\n" . $this->strColObjVenta() . "\n";
 	}
 
 	//*recorre la colección de motos de la Empresa y retorna la referencia al objeto moto cuyo código coincide con el recibido por parámetro
@@ -108,62 +108,64 @@ class Empresa
 	{
 		$i = 0;
 		$seEncontro = false;
-		while ($seEncontro == true || $i < count($this->getColObjMoto())) {
+		$motoEncontrada = null;
+		while (!$seEncontro && $i < count($this->getColObjMoto())) {
 			if ($this->getColObjMoto()[$i]->getCodigo() == $codigoMoto) {
 				$seEncontro = true;
-				return $this->getColObjMoto()[$i];
+				$motoEncontrada = $this->getColObjMoto()[$i];
 			}
 			$i++;
 		}
+		return $motoEncontrada;
 	}
 
-
 	//*método que recibe por parámetro una colección de códigos de motos, la cual es recorrida, y por cada elemento de la colección se busca el objeto moto correspondiente al código y se incorpora a la colección de motos de la instancia Venta que debe ser creada. 
+
 	//!Recordar que no todos los clientes ni todas las motos, están disponibles para registrar una venta en un momento determinado. 
+
 	//*El método debe setear los variables instancias de venta que corresponda y retornar el importe final de la venta
+
+	//*retornarMoto($codigoMoto):recorre la colección de motos de la Empresa y retorna la referencia al objeto moto cuyo código coincide con el recibido por parámetro
 	public function registrarVenta($colCodigosMoto, $objCliente)
 	{
-		$nuevaColObjMoto = [];
-		$colObjVenta[] = $this->getColObjVenta();
-		for ($i = 0; $i < count($colCodigosMoto); $i++) {
-			if (!($objCliente->getDadoBaja()) && $this->getColObjMoto()[$i]->getActiva()) {
-				$objMotoEncontrada = $this->retornarMoto($colCodigosMoto[$i]);
-				if ($objMotoEncontrada != null) {
-					$nuevaColObjMoto[] = $objMotoEncontrada;
+		$precioFinal = null;
+		$objVenta = new Venta(null, null, $objCliente, null, null);
+		$colObjVenta = $this->getColObjVenta();
 
-					//*Creo obj de venta
-					$objVentaRegistrada = new Venta(null, null, $objCliente, $nuevaColObjMoto, null);
-					//*Se setean  la colObjMoto y el precio final de venta
-					$objVentaRegistrada->incorporarMoto($objMotoEncontrada);
-
-					//*Se actualiza las variables instancias de colObjventa y colObjMoto
-					$this->setColObjMoto($nuevaColObjMoto);
-					$colObjVenta[] = $objVentaRegistrada;
-					$this->setColObjVenta($colObjVenta);
-
-					//*retorno el precio final
-					return $objVentaRegistrada->getPrecioFinal();
-				}/*  else {
-					echo "No hubo coincidencia por lo que no retorno nada.\n";
-				} */
-			} /* else {
-					echo "fallo en la condicion";
-				} */
+		foreach ($colCodigosMoto as $codigoMoto) {
+			if ($codigoMoto != null && $objCliente->getDadoBaja() == false) {
+				$motoRetornada = $this->retornarMoto($codigoMoto);
+				if ($motoRetornada != null && $motoRetornada->getActiva() == true) {
+					$objVenta->incorporarMoto($motoRetornada);
+					$precioFinal = $objVenta->getPrecioFinal();
+				}
+			}
+		}
+		if ($objVenta->getPrecioFinal() != null && $precioFinal != null) {
+			$colObjVenta[] = $objVenta;
+			$this->setColObjVenta($colObjVenta);
+			return $precioFinal;
 		}
 	} //!Cierre de registrarVenta
-
 
 	//*Implementar el método retornarVentasXCliente($tipo,$numDoc) que recibe por parámetro el tipo y número de documento de un Cliente y retorna una colección con las ventas realizadas al cliente
 	public function retornarVentasXCliente($tipo, $numDoc)
 	{
-		$ventasRealizadas = [];
-		foreach ($this->getColObjVenta() as $venta) {
-			foreach ($venta->getObjCliente()() as $cliente) {
-				if ($cliente->getNumDoc() == $numDoc && $cliente->getTipoDoc() == $tipo) {
-					$ventasRealizadas[] = $venta;
+		$i = 0;
+		$bandera = false;
+		$colVentaCliente = [];
+		if ($this->getColObjVenta() != null) {
+			while (!$bandera && $i < count($this->getColObjVenta())) {
+				$venta = $this->getColObjVenta()[$i];
+				$tipoDocCliente = $venta->getObjCliente()->getTipoDoc();
+				$numDocCliente = $venta->getObjCliente()->getNumDoc();
+				if ($tipoDocCliente == $tipo && $numDocCliente == $numDoc) {
+					$colVentaCliente[] = $venta;
+					$bandera = true;
 				}
+				$i++;
 			}
 		}
-		return $ventasRealizadas;
-	}
+		return $colVentaCliente;
+	} //!Cierre retornarVentasXCliente
 }//!Cierre clase

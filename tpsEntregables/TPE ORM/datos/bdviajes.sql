@@ -29,7 +29,6 @@ CREATE TABLE viaje (
 	idempresa bigint,
     rnumeroempleado bigint,
     vimporte float, /* en la clase Viaje el atributo es costo */
-    vimporteabonado float,
     PRIMARY KEY (idviaje),
     FOREIGN KEY (idempresa) REFERENCES empresa (idempresa) ON UPDATE CASCADE ON DELETE RESTRICT,
 	FOREIGN KEY (rnumeroempleado) REFERENCES responsable (rnumeroempleado)
@@ -49,31 +48,3 @@ CREATE TABLE viaje (
     FOREIGN KEY (idviaje) REFERENCES viaje (idviaje)  ON UPDATE CASCADE
     ON DELETE CASCADE
     )ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-/*     CREATE TABLE pasajeroconnecesidades ( 
-    idpasajero bigint AUTO_INCREMENT, /*CONSULTAR */
-    sillaruedas boolean,
-    comida boolean,
-    asistencia boolean,
-    PRIMARY KEY (idpasajero), 
-    FOREIGN KEY (idpasajero) REFERENCES pasajero (idpasajero)  ON UPDATE CASCADE
-    ON DELETE CASCADE;
-    )ENGINE=InnoDB DEFAULT CHARSET=utf8;
-    
-    CREATE TABLE pasajerovip ( 
-    idpasajero bigint AUTO_INCREMENT, 
-    numviajerofrecuente bigint,
-    cantmillas bigint,
-    PRIMARY KEY (idpasajero), 
-    FOREIGN KEY (idpasajero) REFERENCES pasajero (idpasajero) ON UPDATE CASCADE
-    ON DELETE CASCADE;
-    )ENGINE=InnoDB DEFAULT CHARSET=utf8;
-    
-    CREATE TABLE pasajeroestandar ( 
-    idpasajero bigint AUTO_INCREMENT, 
-    PRIMARY KEY (idpasajero), 
-    FOREIGN KEY (idpasajero) REFERENCES pasajero (idpasajero) ON UPDATE CASCADE
-    ON DELETE CASCADE;
-    )ENGINE=InnoDB DEFAULT CHARSET=utf8; */
-    
-

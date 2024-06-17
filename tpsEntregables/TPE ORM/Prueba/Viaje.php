@@ -231,7 +231,7 @@ class Viaje
         if ($condicion != "") {
             $consultaviajes = $consultaviajes . ' where ' . $condicion;
         }
-        $consultaviajes .= " order by vdestino ";
+        $consultaviajes .= " order by idviaje ";
         //echo $consultaviajes;
         if ($base->Iniciar()) {
             if ($base->Ejecutar($consultaviajes)) {

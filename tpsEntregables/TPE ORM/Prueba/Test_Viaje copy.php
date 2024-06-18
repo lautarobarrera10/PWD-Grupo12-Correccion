@@ -19,9 +19,10 @@ while (!$bandera) {
     echo "7. Eliminar informacion de la empresa\n";
     echo "8. Agregar Pasajero\n";
     echo "9. Modificar Pasajero\n";
+    echo "10. Eliminar Pasajero\n";
 
     $opcion = readline("Ingrese la opcion deseada: ");
-    if ($opcion >= 0 && $opcion <= 9) {
+    if ($opcion >= 0 && $opcion <= 10) {
         switch ($opcion) {
             case '0':
                 echo "Saliendo del programa...\n";
@@ -57,6 +58,9 @@ while (!$bandera) {
                 break;
             case '9':
                 modificarPasajero();
+                break;
+            case '10':
+                eliminarPasajero();
                 break;
             default:
                 echo "Opcion invalida. Por favor, seleccione una opcion valida.\n";
@@ -102,20 +106,29 @@ function cargarViaje()
     $viaje->insertar(); */
 
 
-    $idEmpresa = readline("Ingrese el id de la empresa: ");
+    //No lo pide xq es id y es la unica empresa o sea siempre va a ser el id 1
+    /* $idEmpresa = readline("Ingrese el id de la empresa: "); */
+
+
     $empresa = new Empresa;
-    $empresa->Buscar($idEmpresa);
+    $idEmpresa = $empresa->listar();
+    if ($idEmpresa == null) {
+        cargarEmpresa();
+    }
+    $empresaCargada = $empresa->listar();
+    foreach ($empresaCargada as $empresa) {
+        $objEmpresa = $empresa;
+    }
 
 
 
-    //*parametros persona
     //*Se crea obj de la clase ResponsableV
     $nuevoResponsable = new ResponsableV();
     $persona = new Persona();
     $nroDocResponsableV = readline("Ingrese el numero de documento empleado del responsable del nuevo viaje: ");
     $encontrado = $persona->Buscar($nroDocResponsableV);
     while ($encontrado == true) {
-        $nroDocResponsableV = readline("Esta persona ya ha sido cargada, por favor ingrese otro dni\n");
+        $nroDocResponsableV = readline("Esta persona ya ha sido cargada, por favor ingrese otro dni: \n");
         $encontrado = $persona->Buscar($nroDocResponsableV);
     }
     $nombreResponsableV = readline("Ingrese el Nombre del responsable del nuevo viaje: ");
@@ -140,7 +153,7 @@ function cargarViaje()
     $costoDelViaje = readline("Ingrese el costo del viaje: ");
 
     $viaje = new Viaje();
-    $viaje->cargar(null, $destino, $maxPasajeros, $empresa, $nuevoResponsable, $costoDelViaje);
+    $viaje->cargar(null, $destino, $maxPasajeros, $objEmpresa, $nuevoResponsable, $costoDelViaje);
     $viaje->insertar();
 }
 
@@ -203,10 +216,10 @@ function eliminarViaje()
     }
     echo "\nIngrese el codigo del viaje a eliminar? ";
     $rta = trim(fgets(STDIN));
-    if ($viaje->Buscar($rta)) {
+    if ($rta != null && $viaje->Buscar($rta)) {
         $viaje->Eliminar();
     } else {
-        echo "\nEl viaje que quiere eliminar no existe.\n";
+        echo "\nEl viaje que quiere eliminar no existe o ingreso una opcion incorrecta.\n";
     }
 }
 
@@ -256,14 +269,29 @@ function menuModificarEmpresa($empresaAModificar)
 
 function verDatosViaje()
 {
-
-
     $viaje = new Viaje();
-    $cantViajes = count($viaje->listar());
+
+    $infoViaje = $viaje->listar();
+    foreach ($infoViaje as $viaje) {
+        echo "\n{$viaje}\n";
+        $id = $viaje->getCodigo();
+        $pasajero = new Pasajero;
+        $pasajeros = $pasajero->listar("idviaje = " . $id);
+        if (count($pasajeros) == 0) {
+            echo "No hay pasajeros cargados. \n";
+        }
+        foreach ($pasajeros as $pasajero) {
+            echo $pasajero;
+            echo "-------\n";
+        }
+    }
+
+
+    /* $cantViajes = count($viaje->listar());
     if ($cantViajes > 0) {
         echo "Ingrese el Id del viaje:";
         $id = trim(fgets(STDIN));
-        if ($id > 0 /* && $id <= $cantViajes */ && $viaje->Buscar($id)) {
+        if ($id > 0 && $viaje->Buscar($id)) {
             echo "\n" . $viaje;
             $pasajero = new Pasajero;
             $pasajeros = $pasajero->listar("idviaje = " . $id);
@@ -275,7 +303,7 @@ function verDatosViaje()
         }
     } else {
         echo "\nNo hay viajes cargados.\n";
-    }
+    } */
 }
 
 function modificarPasajero()
@@ -290,7 +318,7 @@ function modificarPasajero()
         }
         echo "Ingrese el numero de documento del pasajero al que desea cambiarle los datos:\n";
         $numDocPasajero = trim(fgets(STDIN));
-        if ($pasajero->Buscar($numDocPasajero)) {
+        if ($numDocPasajero !=null && $pasajero->Buscar($numDocPasajero)) {
             $pasajeroEncontrado = $pasajero;
             while (true) {
                 echo "Que dato quiere modificar?\n";
@@ -373,7 +401,14 @@ function agregarPasajero()
 {
     $bandera = false;
     $viaje = new Viaje();
-    echo "Ingrese el id del viaje\n";
+    $viajes = $viaje->listar();
+    foreach ($viajes as $viaje) {
+        echo "\nID viaje: {$viaje->getCodigo()} \n";
+        echo "Destino viaje: {$viaje->getDestino()} \n";
+        echo "-------\n";
+    }
+
+    echo "Ingrese el id del viaje.\n";
     $id = trim(fgets(STDIN));
     if ($viaje->Buscar($id)) {
         echo $viaje;
@@ -454,6 +489,26 @@ function agregarPasajero()
     }
 }
 
+function eliminarPasajero()
+{
+    $pasajero = new pasajero();
+    $infopasajero = $pasajero->listar();
+    foreach ($infopasajero as $pasajero) {
+        echo "\n{$pasajero}\n";
+        echo "-------\n";
+    }
+    echo "\nIngrese el DNI del pasajero a eliminar? ";
+    $rta = trim(fgets(STDIN));
+    $persona = new Persona();
+    if ($rta != null && $persona->Buscar($rta)) {
+        if ($persona->Eliminar()) {
+            echo "\nSe elimino con exito.\n";
+        }
+    } else {
+        echo "\nEl pasajero que quiere eliminar no existe o no ingreso un DNI.\n";
+    }
+}
+
 function modificarResponsableViaje($viaje, $opcion)
 {
     $responsable = new ResponsableV();
@@ -522,7 +577,7 @@ function modificarResponsableViaje($viaje, $opcion)
 function cargarEmpresa()
 {
     $empresa = new Empresa();
-    if (count($empresa->listar()) > 1) {
+    if (count($empresa->listar()) >= 1) {
         echo "\nNo pueden existir mas empresas.\n";
     } else {
         $nombreEmpresa = readline("Ingrese el nombre de la empresa: ");
@@ -530,6 +585,7 @@ function cargarEmpresa()
 
         $empresa->cargar(null, $nombreEmpresa, $direccionEmpresa);
         if ($empresa->insertar()) {
+            $empresa->setId(1);
             echo "La empresa fue agregada exitosamente\n";
         } else {
             echo "La empresa no ha podido ser cargada " . $empresa->getmensajeoperacion() . "\n";

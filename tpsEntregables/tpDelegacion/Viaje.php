@@ -88,4 +88,95 @@ class Viaje
 		}
 		return $str;
 	}
+
+	//*Verefica si hay una persona con el mismo dni y si lo hay retorna true.
+	public function verificarDni($dni, $colObjPasajero)
+	{
+		$seEncuentra = false;
+		$i = 0;
+		while ($i < count($colObjPasajero)) {
+			if ($colObjPasajero[$i]->getNumDocumento() == $dni) {
+				$seEncuentra = true;
+			}
+			$i++;
+		}
+		return $seEncuentra;
+	}
+
+	public function menuGeneral()
+	{
+		echo "Menú:\n";
+		echo "0. Salir\n";
+		echo "1. Ver información del viaje.\n";
+		echo "2. Modificar información del viaje/Pasajero/Responsable del Viaje.\n";
+		echo "3. Cargar información del viaje.\n";
+		echo "Seleccione una opción (0-3): ";
+	}
+
+	public function menuModificar()
+	{
+		echo "0. Para volver al menu.\n";
+		echo "¿Qué dato desea cambiar? \n";
+		echo "1. Viaje.\n";
+		echo "2. Pasajero.\n";
+		echo "3. Responsable del viaje.\n";
+	}
+
+
+	public function menuModificarViaje()
+	{
+		echo "------- Modificar Viaje -------\n";
+		echo "0. Para volver al menu.\n";
+		echo "1. Modificar codigo.\n";
+		echo "2. Modificar destino.\n";
+		echo "3. Modificar la cantidad de pasajeros.\n";
+		echo "Seleccione una opción (0-3): ";
+	}
+
+	public function menuModificarResponsable()
+	{
+		echo "------- Modificar Responsable del viaje -------\n";
+		echo "0. Salir.\n";
+		echo "1. Modificar numero de Empleado.\n";
+		echo "2. Modificar numero de Licencia.\n";
+		echo "3. Modificar nombre.\n";
+		echo "4. Modificar apellido.\n";
+		echo "Seleccione una opción (0-4): ";
+	}
+
+	public function menuModificarPasajero()
+	{
+		echo "------- Modificar Pasajero -------\n";
+		echo "0. Salir.\n";
+		echo "1. Modificar nombre.\n";
+		echo "2. Modificar apellido.\n";
+		echo "3. Modificar numero de Documento.\n";
+		echo "4. Modificar numero de Telefono.\n";
+		echo "Seleccione una opción (0-4): ";
+	}
+
+	public function cargarInfoViaje()
+	{
+		$colObjPasajero = $this->getColObjPasajeros();
+		if ($this->getCantMaxPasajeros() > count($colObjPasajero)) {
+			echo "\nNombre: ";
+			$nombre = trim(fgets(STDIN));
+			echo "\nApellido: ";
+			$apellido = trim(fgets(STDIN));
+			echo "\nNumero de Documento: ";
+			$numDocumento = trim(fgets(STDIN));
+			echo "\nNumero de Telefono: ";
+			$numTelefono = trim(fgets(STDIN));
+			if ($nombre != null && $apellido != null && $numDocumento != null && $numTelefono != null && !$this->verificarDni($numDocumento, $colObjPasajero)) {
+				$objPasajero4 = new Pasajero($nombre, $apellido, $numDocumento, $numTelefono);
+				array_push($colObjPasajero, $objPasajero4);
+				$this->setColObjPasajeros($colObjPasajero);
+				echo "------- Cargando Pasajero -------\n";
+			} else {
+				echo "\nNo se pudo agregar ya que algun dato fue nulo.\n";
+			}
+		} else {
+			echo "\nSe alcanzo la capacidad maxima.\n\n";
+		}
+	}
 }//!Cierre de clase

@@ -1,0 +1,41 @@
+header {
+	background-color: #431adc;
+	color: white;
+	font-family: "Open Sans", sans-serif;
+		font-optical-sizing: auto;
+		font-weight: 300;
+		font-style: normal;
+		font-variation-settings:
+			"wdth" 100;
+}
+
+body {
+	background-color:whitesmoke;
+	font-family: "New Amsterdam", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+	min-height: 100vh;
+		/* altura igual al viewport vertical */
+		position: relative;
+}
+li{
+	font-size: larger;
+}
+.row{
+	margin-left: 100px;
+	margin-right: 100px;
+}
+
+footer {
+	background-color: #431adc;
+	color: white;
+	font-family: "Open Sans", sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 300;
+	font-style: normal;
+	font-variation-settings: "wdth" 100;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	padding: 15px;
+}

@@ -1,0 +1,17 @@
+#contenedor {
+  margin: auto;
+  width: 45%;
+  border: 5px solid blue;
+  border-radius: 10px;
+  padding: 20px;
+
+  text-align: center;
+  background-color: rgba(211, 211, 211, 0.424);
+}
+#formulario {
+  background-color: aliceblue;
+  border-radius: 15px;
+}
+#formulario form input {
+  margin-bottom: 10px;
+}

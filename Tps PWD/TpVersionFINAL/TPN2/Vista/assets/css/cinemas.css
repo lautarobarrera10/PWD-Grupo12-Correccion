@@ -1,0 +1,73 @@
+/* https://www.cdnfonts.com/futura-std-4.font */
+@import url('https://fonts.cdnfonts.com/css/futura-std-4');
+html,
+body {
+  font-family: 'Futura Std', sans-serif;
+  height: 100%;
+  width: 100%;
+  background: lightgray;
+}
+#contenedor {
+  background-color: white;
+  box-shadow: 10px 10px darkgray;
+  padding: 10px;
+  width: 200vh;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: auto;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+}
+.formulario table {
+  margin: auto;
+  width: 100%;
+}
+.formulario th {
+  background: #940404;
+  border-radius: 1vh;
+  margin: 1vh;
+  font-weight: bolder;
+  color: white;
+}
+.formulario table td {
+  margin: auto;
+  width: 50%;
+}
+.formulario label {
+  font-weight: bolder;
+}
+.formulario input[type='text'] {
+  margin-top: 1vh;
+  margin-bottom: 2vh;
+  width: 80%;
+  padding: 2vh;
+  border-radius: 2vh;
+}
+.botones {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  position: relative;
+  right: 0;
+}
+.botones button {
+  height: 10%;
+}
+.formulario button {
+  margin-top: 1vh;
+  background-color: #940404;
+  border: none;
+  border-radius: 2vh;
+  padding: 1vh 2vh;
+  text-decoration: none;
+  color: ivory;
+  margin-left: 2vh;
+  font-weight: bolder;
+}
+.formulario button:hover {
+  background-color: #7c0404;
+}
+
+.mensaje {
+  color: red;
+}

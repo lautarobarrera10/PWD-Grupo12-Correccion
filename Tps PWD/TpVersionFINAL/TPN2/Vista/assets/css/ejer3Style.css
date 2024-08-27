@@ -1,0 +1,30 @@
+
+		body {
+			background-color: grey;
+		}
+
+		.login-container {
+			margin-top: 10%;
+			padding: 2rem;
+			background-color: #ffffff;
+			border-radius: 0.5rem;
+			box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+		}
+
+		.form-control {
+			border-radius: 0.25rem;
+		}
+
+		.btn-primary {
+			background-color: #40c154;
+			border: none;
+		}
+
+		.btn-primary:hover {
+			background-color: #0056b3;
+		}
+
+		.text-center {
+			font-weight: 700;
+			color: #343a40;
+		}

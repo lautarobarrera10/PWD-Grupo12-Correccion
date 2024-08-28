@@ -29,14 +29,14 @@
 				<h2 class="h2 text-primary"> <a href="https://github.com/enzomolina10/unco/blob/main/Tps%20PWD/Consignas/TP1_PHPHTML_20.pdf" target="_blank">TP N° 1 - HTML-PHP</a></h2>
 				<h3 class="h3 text-secondary">Ejercicios</h3>
 				<ul class="list-group">
-					<li class="list-group-item"><a href="/TpVersionFINAL/TPN1/Vista/Ej1.php">Ejercicio 1</a></li>
-					<li class="list-group-item"><a href="/TpVersionFINAL/TPN1/Vista/Ej2.php">Ejercicio 2</a></li>
-					<li class="list-group-item"><a href="/TpVersionFINAL/TPN1/Vista/Ej3.php">Ejercicio 3</a></li>
-					<li class="list-group-item"><a href="/TpVersionFINAL/TPN1/Vista/Ej4.php">Ejercicio 4</a></li>
-					<li class="list-group-item"><a href="/TpVersionFINAL/TPN1/Vista/Ej5.php">Ejercicio 5</a></li>
-					<li class="list-group-item"><a href="/TpVersionFINAL/TPN1/Vista/Ej6.php">Ejercicio 6</a></li>
-					<li class="list-group-item"><a href="/TpVersionFINAL/TPN1/Vista/Ej7.php">Ejercicio 7</a></li>
-					<li class="list-group-item"><a href="/TpVersionFINAL/TPN1/Vista/Ej8.php">Ejercicio 8</a></li>
+					<li class="list-group-item"><a href="./TPN1/Vista/Ej1.php">Ejercicio 1</a></li>
+					<li class="list-group-item"><a href="./TPN1/Vista/Ej2.php">Ejercicio 2</a></li>
+					<li class="list-group-item"><a href="./TPN1/Vista/Ej3.php">Ejercicio 3</a></li>
+					<li class="list-group-item"><a href="./TPN1/Vista/Ej4.php">Ejercicio 4</a></li>
+					<li class="list-group-item"><a href="./TPN1/Vista/Ej5.php">Ejercicio 5</a></li>
+					<li class="list-group-item"><a href="./TPN1/Vista/Ej6.php">Ejercicio 6</a></li>
+					<li class="list-group-item"><a href="./TPN1/Vista/Ej7.php">Ejercicio 7</a></li>
+					<li class="list-group-item"><a href="./TPN1/Vista/Ej8.php">Ejercicio 8</a></li>
 				</ul>
 			</div>
 			<div class="menuTpDos col-md-4">
@@ -45,20 +45,20 @@
 				<ul class="list-group">
 					<ul class="list-group">
 						<li class="list-group-item">
-							<a href="#">Ejercicio 2 (Tp 1)</a>
+							<p href="#">Ejercicio 2 (Tp 1)</p>
 							<ul class="list-group">
-								<li class="list-group-item"><a href="../TpVersionFINAL/TPN2/EJ2/Vista/Ej1.php">Ejercicio 1</a></li>
-								<li class="list-group-item"><a href="../TpVersionFINAL/TPN2/EJ2/Vista/Ej2.php">Ejercicio 2</a></li>
-								<li class="list-group-item"><a href="../TpVersionFINAL/TPN2/EJ2/Vista/Ej3.php">Ejercicio 3</a></li>
-								<li class="list-group-item"><a href="../TpVersionFINAL/TPN2/EJ2/Vista/Ej4.php">Ejercicio 4</a></li>
-								<li class="list-group-item"><a href="../TpVersionFINAL/TPN2/EJ2/Vista/Ej5.php">Ejercicio 5</a></li>
-								<li class="list-group-item"><a href="../TpVersionFINAL/TPN2/EJ2/Vista/Ej6.php">Ejercicio 6</a></li>
-								<li class="list-group-item"><a href="../TpVersionFINAL/TPN2/EJ2/Vista/Ej7.php">Ejercicio 7</a></li>
-								<li class="list-group-item"><a href="../TpVersionFINAL/TPN2/EJ2/Vista/Ej8.php">Ejercicio 8</a></li>
+								<li class="list-group-item"><a href="./TPN2/EJ2/Vista/Ej1.php">Ejercicio 1</a></li>
+								<li class="list-group-item"><a href="./TPN2/EJ2/Vista/Ej2.php">Ejercicio 2</a></li>
+								<li class="list-group-item"><a href="./TPN2/EJ2/Vista/Ej3.php">Ejercicio 3</a></li>
+								<li class="list-group-item"><a href="./TPN2/EJ2/Vista/Ej4.php">Ejercicio 4</a></li>
+								<li class="list-group-item"><a href="./TPN2/EJ2/Vista/Ej5.php">Ejercicio 5</a></li>
+								<li class="list-group-item"><a href="./TPN2/EJ2/Vista/Ej6.php">Ejercicio 6</a></li>
+								<li class="list-group-item"><a href="./TPN2/EJ2/Vista/Ej7.php">Ejercicio 7</a></li>
+								<li class="list-group-item"><a href="./TPN2/EJ2/Vista/Ej8.php">Ejercicio 8</a></li>
 							</ul>
 						</li>
-						<li class="list-group-item"><a href="/TpVersionFINAL/TPN2/Vista/ejer3.php">Ejercicio 3</a></li>
-						<li class=" list-group-item"><a href="/TpVersionFINAL/TPN2/Vista/ejer4.php">Ejercicio 4</a></li>
+						<li class="list-group-item"><a href="./TPN2/Vista/ejer3.php">Ejercicio 3</a></li>
+						<li class=" list-group-item"><a href="./TPN2/Vista/ejer4.php">Ejercicio 4</a></li>
 					</ul>
 
 			</div>
@@ -66,9 +66,9 @@
 									<h2 class="h2 text-primary"><a href="https://github.com/enzomolina10/unco/blob/main/Tps%20PWD/Consignas/TP3_SubirArchivos.pdf" target="_blank">TP N° 3 - Subir Archivos</a></h2>
 									<h3 class="h3 text-secondary">Ejercicios</h3>
 									<ul class="list-group">
-										<li class="list-group-item"><a href="/TpVersionFINAL/TPN3/vista/Ej1.php">Ejercicio 1</a></li>
-										<li class="list-group-item"><a href="/TpVersionFINAL/TPN3/vista/Ej2.php">Ejercicio 2</a></li>
-										<li class="list-group-item"><a href="/TpVersionFINAL/TPN3/vista/Ej3.php">Ejercicio 3</a></li>
+										<li class="list-group-item"><a href="./TPN3/vista/Ej1.php">Ejercicio 1</a></li>
+										<li class="list-group-item"><a href="./TPN3/vista/Ej2.php">Ejercicio 2</a></li>
+										<li class="list-group-item"><a href="./TPN3/vista/Ej3.php">Ejercicio 3</a></li>
 									</ul>
 			</div>
 		</div>
